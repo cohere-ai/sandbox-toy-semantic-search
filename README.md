@@ -67,7 +67,7 @@ Before running docker (e.g. to run our server) for the first time on OS X, open 
 privileges it needs to run on your system.
 
 You will also need to have a Cohere API Key in the `COHERE_TOKEN`. Get one from 
-[the Cohere platform](https://dashboard.cohere.ai/) (create an account if needed), and write it to your environment
+[the Cohere platform](https://dashboard.cohere.ai/welcome/register?utm_source=github&utm_medium=content&utm_campaign=sandbox&utm_content=semanticsearch) (create an account if needed), and write it to your environment
 ```bash
 export COHERE_TOKEN=<MY_API_KEY>
 ```
