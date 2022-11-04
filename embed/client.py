@@ -47,7 +47,7 @@ class Client:
 
         embs = []
         for i in range(0, len(self._embed_texts), COHERE_BATCH_SIZE):
-            for i in range(COHERE_N_RETRIES):
+            for _ in range(COHERE_N_RETRIES):
                 try:
                     x = self._co.embed(self._embed_texts[i:i + COHERE_BATCH_SIZE], model='large',
                                        truncate='LEFT').embeddings
