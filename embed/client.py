@@ -7,6 +7,7 @@
 # level of this repository.
 
 import dataclasses
+import time
 from typing import List
 
 import cohere
@@ -55,6 +56,10 @@ class Client:
                 except requests.exceptions.ConnectionError:
                     print('Connection dropped... retrying...')
                     time.sleep(1)
+                except cohere.error.CohereError:
+                    # This is most likely going to happen when people get rate limited due to using a trial key.
+                    # Waiting and retrying should solve the problem.
+                    time.sleep(60)
             else:
                 raise RuntimeError(
                     'Hit maximum number of retries connecting to the Cohere API: is there a problem with your network?')
