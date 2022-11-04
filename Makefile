@@ -7,13 +7,13 @@ IMAGE ?= $(REGISTRY)/$(APP)-$(COMPONENT)
 
 
 download-python-docs:
-	curl https://docs.python.org/3/archives/python-3.10.7-docs-text.zip --output python-docs.zip
+	curl https://docs.python.org/3/archives/python-3.11.0-docs-html.zip --output python-docs.zip
 	unzip python-docs.zip -d txt
 	rm -r  txt/python-3.10.7-docs-text/whatsnew  # remote whatsnew because it adds a lot of noise
 	rm python-docs.zip
 
 download-python-docs-small:
-	curl https://docs.python.org/3/archives/python-3.10.7-docs-text.zip --output python-docs.zip
+	curl https://docs.python.org/3/archives/python-3.11.0-docs-html.zip --output python-docs.zip
 	unzip python-docs.zip -d txt
 	find txt -d 2 | grep -v tutorial | xargs rm -rd  # remove everything except the tutorial
 	rm python-docs.zip
