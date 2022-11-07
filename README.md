@@ -26,9 +26,9 @@
 
 # Toy Semantic Search
 
-This is an example of how to use the Cohere API to build a simple semantic search engine. It is not meant to be 
+This is an example of how to use the [Cohere API](https://docs.cohere.ai/) to build a simple semantic search engine. It is not meant to be 
 production-ready or scale efficiently (although could be adapted to these ends), but rather serves to showcase the
-ease of producing a search engine powered by representations produced by Cohere's Large Language Models (LLMs).
+ease of producing a search engine powered by representations produced by [Cohere](https://cohere.ai/)'s Large Language Models (LLMs).
 
 The search algorithm used here is fairly simple: it simply finds the paragraph which most closely matches the 
 representation of the question, using the `co.embed` endpoint.
@@ -184,7 +184,7 @@ vim +cw -M -q <(python utils/query_server.py "my_query" --num_results 3)
 to get vim to open the indexed text files at the locations returned by the search algorithm. (use `:qall` to close both 
 the window and the quickfix navigator). You can cycle through the returned results using `:cn` and `:cp`.
 The results aren't perfect; it's semantic search, so you would expect the matching to be a bit fuzzy. Despite this, I often find you 
-can get the answer to your question in the first few results, and using cohere's API lets you express your 
+can get the answer to your question in the first few results, and using Cohere's API lets you express your 
 question in natural language, and let's you build a suprisingly effective search engine in just a few lines of code.
 
 ### Example queries
