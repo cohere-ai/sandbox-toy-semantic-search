@@ -16,9 +16,10 @@ import numpy as np
 class Client:
     """This class wraps around a Cohere client to facilitate semantic search using query embeddings."""
 
-    def __init__(self, input_embeddings: str) -> None:
+    def __init__(self, input_embeddings: str, model_name: str = "large") -> None:
         """Initialize the client using embeddings of documents (blocks) provided as input_embeddings."""
         self._co = cohere.Client(os.environ["COHERE_TOKEN"])
+        self._model_name = model_name
         self._embeddings = np.load(input_embeddings)
         self._index = faiss.IndexFlatIP(self._embeddings['embeddings'].shape[-1])  # inner product index
         f32_embeddings = self._embeddings['embeddings'].astype(np.float32)  # faiss only supports f32
@@ -34,7 +35,7 @@ class Client:
 
     def search(self, query: str, n_results: int):
         """Execute a search by embedding the query and finding similar block embeddings."""
-        q_embedding = self._co.embed([query], model='large').embeddings
+        q_embedding = self._co.embed([query], model=self._model_name).embeddings
         q = np.array(q_embedding, dtype=np.float32)
 
         # normalise the query too

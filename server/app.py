@@ -34,7 +34,7 @@ client = None
 def init_v2():
     global client
     log.info('fetching v2 block embeddings from local storage')
-    client = SearchClient('/data/embeddings.npz')
+    client = SearchClient('/data/embeddings.npz')  # TODO(amr): specify the model name here
     log.info(f'fetched {client.n_embeddings()} block embeddings')
 
 

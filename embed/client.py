@@ -29,9 +29,10 @@ class Block():
 class Client:
     """This class wraps around a Cohere client to facilitate embedding blocks of text."""
 
-    def __init__(self, api_token) -> None:
+    def __init__(self, api_token, model_name: str = "large") -> None:
 
         self._co = cohere.Client(api_token)
+        self._model_name = model_name
         self._embeddings = []
         self._embed_texts = []
         self._block_links = []
@@ -49,7 +50,7 @@ class Client:
         for i in range(0, len(self._embed_texts), COHERE_BATCH_SIZE):
             for _ in range(COHERE_N_RETRIES):
                 try:
-                    x = self._co.embed(self._embed_texts[i:i + COHERE_BATCH_SIZE], model='large',
+                    x = self._co.embed(self._embed_texts[i:i + COHERE_BATCH_SIZE], model=self._model_name,
                                        truncate='LEFT').embeddings
                     embs.extend(x)
                     break
