@@ -6,6 +6,7 @@
 # You may obtain a copy of the License in the LICENSE file at the top
 # level of this repository.
 
+import os
 import logging
 import pprint
 from typing import List, Union
@@ -34,7 +35,7 @@ client = None
 def init_v2():
     global client
     log.info('fetching v2 block embeddings from local storage')
-    client = SearchClient('/data/embeddings.npz')  # TODO(amr): specify the model name here
+    client = SearchClient('/data/embeddings.npz', model_name=os.environ.get('COHERE_MODEL_NAME', 'large'))
     log.info(f'fetched {client.n_embeddings()} block embeddings')
 
 
