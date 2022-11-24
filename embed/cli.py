@@ -69,7 +69,7 @@ def blocks(input_blocks: str,
 @click.option('--output-file', help='path to output file of embeddings')
 @click.option('--context-window', help='number of surrounding blocks included while embedding', default=6)
 @click.option('--api_token', help='Cohere API token', default=None)
-@click.option('--model_name', help='Cohere Model name', default='large')
+@click.option('--model_name', help='Cohere model name', default='large')
 def localtxt(root_dir,
              output_file,
              context_window,
