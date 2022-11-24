@@ -35,7 +35,8 @@ client = None
 def init_v2():
     global client
     log.info('fetching v2 block embeddings from local storage')
-    client = SearchClient('/data/embeddings.npz', model_name=os.environ.get('COHERE_MODEL_NAME', 'large'))
+    model_name = os.environ.get('COHERE_MODEL_NAME', 'large')
+    client = SearchClient('/data/embeddings.npz', model_name=model_name)
     log.info(f'fetched {client.n_embeddings()} block embeddings')
 
 
