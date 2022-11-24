@@ -25,7 +25,7 @@ def cli(ctx):
 @click.option('--version', help='specify version of search algorithm and embedding file format', default=2)
 @click.option('--input-embeddings', help='path to input file of embeddings')
 @click.option('--num-results', default=3)
-@click.option('--model_name', help='Cohere Model name', default='large')
+@click.option('--model_name', help='Cohere model name', default='large')
 def blocks(input_embeddings: str, num_results: int, model_name: str) -> None:
     """semantic search against notion block embeddings using cohere"""
     client = None
