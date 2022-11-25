@@ -28,7 +28,12 @@ def cli(ctx):
 @click.option('--output-file', help='path to output file of embeddings')
 @click.option('--context-window', help='number of surrounding blocks included while embedding', default=6)
 @click.option('--api_token', help='Cohere API token', default=None)
-def blocks(input_blocks: str, output_file: str, context_window: int, api_token: typing.Optional[str] = None) -> None:
+@click.option('--model_name', help='Cohere model name', default='large')
+def blocks(input_blocks: str,
+           output_file: str,
+           context_window: int,
+           api_token: typing.Optional[str] = None,
+           model_name: typing.Optional[str] = 'large') -> None:
     """Embed a collection of text blocks presented in a jsonl file."""
 
     blocks = []
@@ -46,7 +51,7 @@ def blocks(input_blocks: str, output_file: str, context_window: int, api_token: 
     else:
         raise KeyError("Could not find Cohere API key in kwargs or environment.")
 
-    client = Client(api_token)
+    client = Client(api_token, model_name=model_name)
 
     # Embed all blocks using the Cohere client
     click.secho(f'fetching embeddings from discovered blocks', fg='cyan')
@@ -64,7 +69,12 @@ def blocks(input_blocks: str, output_file: str, context_window: int, api_token: 
 @click.option('--output-file', help='path to output file of embeddings')
 @click.option('--context-window', help='number of surrounding blocks included while embedding', default=6)
 @click.option('--api_token', help='Cohere API token', default=None)
-def localtxt(root_dir, output_file, context_window, api_token: typing.Optional[str] = None):
+@click.option('--model_name', help='Cohere model name', default='large')
+def localtxt(root_dir,
+             output_file,
+             context_window,
+             api_token: typing.Optional[str] = None,
+             model_name: typing.Optional[str] = 'large'):
     """Retrieve all blocks from text documents in a root dir, and embed them."""
 
     text_client = LocalTextClient(root_dir)
@@ -79,7 +89,7 @@ def localtxt(root_dir, output_file, context_window, api_token: typing.Optional[s
     else:
         raise KeyError("Could not find Cohere API key in kwargs or environment.")
 
-    client = Client(api_token)
+    client = Client(api_token, model_name=model_name)
 
     # Embed all blocks using the Cohere client
     click.secho(f'fetching embeddings from discovered blocks', fg='cyan')
